@@ -18,6 +18,12 @@ app.post('/' ,(req,res) => {
   res.json(body)
 })
 
+app.get('/:id' , (req,res) => {
+  const {id} = req.params
+  const list = LISTS.filter((list) => list.id === id)
+  res.json(list)
+})
+
 
 app.listen(9000, () => {
   console.log("done");
