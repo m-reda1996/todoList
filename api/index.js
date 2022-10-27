@@ -24,7 +24,19 @@ app.get('/:id' , (req,res) => {
   res.json(list)
 })
 
+app.put('/:id' , (req,res) => {
+  const {id} = req.params
+  const {body} = req
+  const index = LISTS.findIndex((index) => index.id === id )
+  LISTS[index] = ({id , ...body })
+  res.json(LISTS[index])
+})
 
+app.delete('/:id' , (req,res) => {
+  const {id} = req.params
+  LISTS = LISTS.filter((list) => list.id !== id )
+  res.send('deleted')
+})
 app.listen(9000, () => {
   console.log("done");
 });
